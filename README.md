@@ -6,6 +6,7 @@ Contiene:
 - Proyecto personal de página web en Wordpress. To~Do WEBS.
   
 - Contenido de JAVA:
+  
       +  LibreriaJPA: libreria básica que usa JPA con Hibernate para poder acceder a la base de datos de H2, añadir o consultar información en ella.
   
       +  BancoJAVA: contiene un JAR ejecutable con la app, es necesario tener el jar de mysql-connector-j-8.0.32, jcalendar-1.4 y h2-2.1.214.
