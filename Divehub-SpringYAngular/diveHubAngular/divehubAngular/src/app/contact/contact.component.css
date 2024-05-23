@@ -1,0 +1,100 @@
+.container{
+    margin-top: 100px;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    text-align: center;
+}
+
+.contact-area{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.text-danger{
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.td-1{
+    margin-top: -50px;
+}
+
+.td-2{
+    margin-top: -60px;
+}
+
+.td-3{
+    margin-top: -30px;
+}
+
+.error{
+    border: 2px solid red
+}
+
+button {
+    height: 40px;
+    border: none;
+    border-radius: 40px;
+}
+
+.fade{
+    position: relative;
+    z-index: 1000;
+}
+
+iframe{
+    margin-left: 100px;
+    margin-top: 50px;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.contact-now .btn-contact-now {
+    position: fixed;
+    bottom: 3rem;
+    right: 1.625rem;
+    box-shadow: 0 1px 20px 1px #1d4aff
+}
+
+.contact-now .btn-contact-now:hover {
+    box-shadow: none
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1324px) {
+    .content{
+        display: block;
+    }
+
+    .contact-area{
+        margin-top: 50px;
+    }
+
+    iframe{
+        width: 100%;
+        margin-bottom: 50px;
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .content{
+        display: block;
+    }
+
+    .contact-area{
+        margin-top: 50px;
+    }
+
+    iframe{
+        width: 100%;
+        margin-bottom: 50px;
+        margin-left: 0;
+    }
+}

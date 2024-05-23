@@ -1,0 +1,65 @@
+<div *ngIf="isLogged()"><app-menu-navbar-loggeado /></div>
+<div *ngIf="!isLogged()"><app-menu-navbar-sin-loggear /></div>
+
+
+<div class="container mb-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+        <li class="breadcrumb-item active">Contacto</li>
+    </ol>
+
+    <div *ngIf="showMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        <p>Mensaje enviado con éxito!!</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p>Espere para volver a enviar un mensaje</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="error=false"></button>
+    </div>
+
+    <div class="content">
+        <div class="contact-area mb-3 p-5 bg-dark rounded">
+            <h1 class="text-light mb-2">Información de contacto:</h1>
+            <form class="row g-2" [formGroup]="loginForm" (ngSubmit)="contact()">
+                <div class="col-md-12 form-floating">
+                    <input type="email" class="form-control" formControlName="email" placeholder="Correo" required
+                        [ngClass]="{'error' : email.invalid && email.errors && formSubmitted}">
+                    <label class="form-label">Correo:</label>
+                </div>
+                <div *ngIf="email.invalid && email.errors && formSubmitted" class="text-danger">
+                    <span class="td-1" *ngIf="email.errors?.['required'] || email.errors?.['pattern']"></span>
+                    <span class="td-1" *ngIf="email.errors?.['required']">Email obligatorio.</span>
+                    <span class="td-1" *ngIf="email.errors?.['pattern']">El formato no es válido.</span>
+                </div>
+
+                <div class="form-floating mt-3 mb-3">
+                    <textarea class="form-control" formControlName="content" placeholder="comentarios"
+                        style="height: 150px; resize: none" required
+                        [ngClass]="{'error' : content.invalid && (content.dirty || content.touched)}"></textarea>
+                    <label class="form-label">Deje aquí sus comentarios:</label>
+                </div>
+                <div *ngIf="content.invalid && (content.dirty || content.touched)" class="text-danger">
+                    <span class="td-2" *ngIf="content.errors?.['required']"></span>
+                    <span class="td-2" *ngIf="content.errors?.['required']">Contenido obligatorio.</span>
+                </div>
+
+                <div class="col-md-12 mb-4 form-floating">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="terminos" formControlName="terms" required
+                            [ngClass]="{'error' : terms.invalid && (terms.dirty || terms.touched)}">
+                        <label class="form-check-label text-light" for="terminos">Acepta los términos y
+                            condiciones</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d5057.676553271785!2d-3.689359699709903!3d40.44419971982005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1716035405232!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+
+<div class="contact-now">
+    <a [routerLink]="['/contact']" class="btn btn-info btn-contact-now">Contacta con nosotros</a>
+</div>
+
+<app-footer />

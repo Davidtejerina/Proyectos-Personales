@@ -1,0 +1,95 @@
+.navbar-cart {
+  position: relative;
+  margin-right: 30px;
+}
+
+.navbar-cart-items {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  color: white;
+  border-radius: 50%;
+  background-color: rgba(255, 0, 0, 0.718);
+  height: 20px;
+  width: 20px;
+}
+
+.navbar-cart-items p {
+  font-size: 13.5px;
+  text-align: center;
+}
+
+.cart {
+  animation: slideInRight 0.5s;  
+  display: none;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%); 
+  }
+  to {
+    transform: translateX(0);  
+  }
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+  background-color: rgb(240, 240, 240);
+  border-radius: 10px;
+  border: 1px solid #000000;
+  right: 10px;
+  min-width: 25%;
+}
+
+.show app-carrito-dynamic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login {
+  margin-right: 30px;
+}
+
+img {
+  width: 35px;
+  margin-right: 30px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;  
+}
+
+.cart-icon {
+  margin-right: 5px;  
+}
+
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  background-color: #3c3c3c;
+  box-shadow: 0px 8px 16px 0px rgba(3, 3, 3, 0.2);
+}
+
+.dropdown-item {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.dropdown-item:hover {
+  background-color: #6c6767;
+}
+
+.dropdown-item.b1:hover {
+  background-color: #dc3545; 
+}
+

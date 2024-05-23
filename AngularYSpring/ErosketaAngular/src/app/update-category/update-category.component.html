@@ -1,0 +1,28 @@
+<app-menu-nav-bar />
+<div class="container mt-5 p-4">
+    <div class="col-md-6 offset-md-3">
+        <h3 class="mb-4 mt-5">Edición Categoría</h3>
+        <form (ngSubmit)="updateCategory()" #categoryForm="ngForm">
+
+            <div class="form-group mb-5 mt-5">
+                <label>Nombre: </label>
+                <input type="text" class="form-control" [(ngModel)]="category.name" name="nameOfCategory" required
+                    minlength="4" placeholder="Introduzca el nuevo nombre" #name="ngModel">
+
+                <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <div *ngIf="name.errors?.['required']" style="color: red;">Escriba un nombre por favor</div>
+                    <div *ngIf="name.errors?.['minlength']" style="color: red;">El nombre tiene que tener mínimo 4
+                        caractéres</div>
+                </div>
+            </div>
+
+            <div class="form-group mb-5 mt-5">
+                <label>Color: </label>
+                <input type="color" class="form-control" [(ngModel)]="category.color" name="colorOfCategory"
+                    #color="ngModel">
+            </div>
+
+            <button class="btn btn-success" [disabled]="!categoryForm.form.valid">Guardar</button>
+        </form>
+    </div>
+</div>

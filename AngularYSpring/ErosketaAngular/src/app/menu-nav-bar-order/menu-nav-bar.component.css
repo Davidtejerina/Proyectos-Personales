@@ -1,0 +1,36 @@
+.login {
+  margin-right: 80px;
+}
+
+img {
+  width: 35px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;  
+}
+
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  background-color: #3c3c3c;
+  box-shadow: 0px 8px 16px 0px rgba(3, 3, 3, 0.2);
+}
+
+.dropdown-item {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.dropdown-item:hover {
+  background-color: #6c6767;
+}
+
+.dropdown-item.b1:hover {
+  background-color: #dc3545; 
+}
+

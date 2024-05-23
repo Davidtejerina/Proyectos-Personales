@@ -1,0 +1,25 @@
+a {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.navbar {
+  backdrop-filter: blur(5px);
+  background-color: #0a4175a8;
+}
+
+li:hover{
+  border-bottom: 2px solid blue;
+}
+
+.navbar-brand{
+  margin-left: 100px;
+}
+
+.navbar-nav{
+  margin-right: 50px;
+}
+
+.navbar-toggler{
+  margin-left: 20px;
+}

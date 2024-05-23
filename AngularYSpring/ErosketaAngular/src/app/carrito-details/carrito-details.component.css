@@ -1,0 +1,13 @@
+.info {
+  text-align: center;
+  font-size: 30px;
+  color: #555;
+  margin-top: 20px;
+}
+
+
+img {
+  width: 100px;
+  border-radius: 4px;
+  margin-right: 10px;
+}

@@ -1,0 +1,22 @@
+.container-button{
+    display: flex;
+    justify-content: space-between;
+}
+
+button{
+    width: 40%;
+}
+
+.info{
+    margin-left: 100px;
+}
+
+.info label{
+    margin-right: 10px;
+}
+
+.info input{
+    background-color: beige;
+    border: 1px solid gray;
+    outline: none;
+}

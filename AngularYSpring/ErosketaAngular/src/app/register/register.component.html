@@ -1,0 +1,58 @@
+<div id="video-container">
+    <video autoplay loop muted>
+        <source src="../../assets/img/pexels-adrien-jacta-6430503.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div class="wrapper">
+    <div class="login-box">
+        <form class="text-center" [formGroup]="signupForm" (ngSubmit)="register()">
+            <div *ngIf="signupError !== ''" class="alert alert-danger text-danger mb-4">Ya existe una cuenta con ese correo</div>
+
+            <h2>Registro de Usuario</h2>
+            <div class="d-flex justify-content-between">
+                <fieldset class="m-5">
+                    <div class="input-box">
+                        <input formControlName="firstname" type="text" id="inputNombre" required>
+                        <label for="inputNombre">Nombre</label>
+                    </div>
+                    <div class="input-box">
+                        <input formControlName="lastname" type="text" id="inputApellido" required>
+                        <label for="inputApellido">Apellido</label>
+                    </div>
+                    <div class="input-box">
+                        <input formControlName="biography" type="text" id="inputDescripcion" required>
+                        <label for="inputDescripcion">Descripción</label>
+                    </div>
+                    <div class="input-box">
+                        <input formControlName="city" type="text" id="inputCiudad" required>
+                        <label for="inputCiudad">Ciudad</label>
+                    </div>
+                    <div class="input-box">
+                        <input formControlName="postal_code" type="number" id="inputPostal_code" required>
+                        <label for="inputPostal_code">Código postal</label>
+                    </div>
+                </fieldset>
+                <fieldset class="m-5">
+                    <div class="input-box">
+                        <input formControlName="country" type="text" id="inputPais" required>
+                        <label for="inputPais">Pais</label>
+                    </div>
+                    <div class="input-box">
+                        <input formControlName="phone" type="number" id="inputTelefono" required>
+                        <label for="inputTelefono">Teléfono</label>
+                    </div>
+                    <div class="input-box">
+                        <input formControlName="email" type="text" id="inputEmail" required>
+                        <label for="inputEmail">Email</label>
+                    </div>
+                    <div class="input-box">
+                        <input formControlName="password" type="password" id="inputPassword" required>
+                        <label for="inputPassword">Password</label>
+                    </div>
+                </fieldset>
+            </div>
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<app-menu-nav-bar />
+<section class="profile-section p-5">
+    <h1 class="text-primary pb-4 mb-4">{{ user.firstname }} {{ user.lastname }}
+        <button (click)="logOut()" class="btn btn-primary m-2"><i class="fas fa-door-open"></i></button>
+    </h1>
+    <div class="profile-info">
+        <img src="../../assets/img/profile_picture.png">
+        <div class="user-details">
+            <p>{{ user.biography }}</p><br>
+            <p><i class="fas fa-envelope"></i> {{ user.email }}</p>
+            <p><i class="fas fa-house"></i> {{ user.postal_code }}, {{ user.city }}, {{ user.country }}</p>
+            <p><i class="fas fa-phone"></i> {{ user.phone }}</p>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" (click)="updateUser()">Editar perfil</button>
+            </div>
+        </div>
+    </div>
+</section>

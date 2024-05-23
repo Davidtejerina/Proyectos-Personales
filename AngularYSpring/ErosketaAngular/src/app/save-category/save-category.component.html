@@ -1,0 +1,23 @@
+<app-menu-nav-bar />
+<div class="container mt-5 p-4">
+    <div class="col-md-6 offset-md-3 mt-3">
+        <h3 class="mb-4 mt-5">Añadir Categoría:</h3>
+        <form (ngSubmit)="saveCategory()">
+            <div class="form-group mb-4">
+                <label>Nombre:</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="category.name" name="name" required>
+            </div>
+            <div class="form-group mb-4">
+                <label>Color:</label>
+                <input type="color" class="form-control" id="color" [(ngModel)]="category.color" name="color" required>
+            </div>
+            <div class="form-group mb-4">
+                <label class="text-light">Imagen:</label>
+                <input type="file" class="form-control" id="image" [(ngModel)]="category.image" name="image">
+                <small class="form-text text-muted">Selecciona una imagen para la categoría</small>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+        </form>
+    </div>
+</div>

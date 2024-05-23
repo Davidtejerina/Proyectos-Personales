@@ -1,0 +1,42 @@
+<app-menu-nav-bar />
+    <div class="d-flex align-items-center justify-content-center mt-4">
+        <h1>Lista de Deseos</h1>
+        <button (click)="deleteAll()" class="btn btn-info fa-solid fa-trash text-dark"></button>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div class="container mt-4">
+            <div class="row">
+                <ng-container *ngIf="(wishList | async) as wishListItems">
+                    <ng-container *ngIf="wishListItems.length > 0; else emptyWishlist">
+                        <article *ngFor="let wishListProduct of wishListItems" class="col-md-3 mb-4">
+                            <div class="card h-100" [ngStyle]="{ 'border': '2px solid ' + wishListProduct.product.category.color}">
+                                <img class="card-img-top p-3 m-auto" style="width: 100%; max-height: 200px; object-fit: cover;"
+                                    [src]="wishListProduct.product.image">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ wishListProduct.product.name }}</h5>
+                                    <p class="card-text mt-auto">{{ wishListProduct.product.description }}</p>
+                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                        <div class="mt-auto">
+                                            <p class="card-text"><strong>{{ wishListProduct.product.price }}€</strong></p>
+                                            <p class="card-text" [ngClass]="{'text-success': hasStock(wishListProduct.product.id), 'text-danger': !hasStock(wishListProduct.product.id)}">
+                                                {{ hasStock(wishListProduct.product.id) ? 'En stock' : 'Sin stock' }}
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <button (click)="details(wishListProduct.product.id)" class="btn btn-success">Ver producto</button>
+                                            <img (click)="toggleLike(wishListProduct.product)" [src]="wishListProduct.product.isLiked ? '../../assets/img/like2.png' : '../../assets/img/like.png'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </ng-container>
+                    <ng-template #emptyWishlist>
+                        <p class="text-center text-danger">La lista de deseos está vacía.</p>
+                        <button [routerLink]="['/all-categories']" class="btn btn-warning mx-auto text-center">Ir a la
+                            tienda</button>
+                    </ng-template>
+                </ng-container>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,39 @@
+<!-- Están el carrito y el login escondido a la espera de que se active el canvas -->
+<app-login />
+<app-navbar-collapse />
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <button class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbar-collapse">
+        <i class="fas fa-bars text-light"></i>
+    </button>
+
+    <a class="navbar-brand" [routerLink]="['/home']">DIVEHUB <img src="../../assets/img/buzo-01.png" height="60"></a>
+
+    <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav align-items-center">
+            <!-- Init -->
+            <li class="nav-item mx-3">
+                <a class="nav-link btn" [routerLink]="['/home']">Inicio</a>
+            </li> 
+            
+            <!-- Galery -->
+            <li class="nav-item mx-3">
+                <a class="nav-link btn" [routerLink]="['/galery']">Galería de expediciones</a>
+            </li>
+
+            <!-- Shop -->
+            <li class="nav-item mx-3">
+                <a class="nav-link btn" [routerLink]="['/shop']">Tienda</a>
+            </li>
+
+            <!-- Contact -->
+            <li class="nav-item mx-3">
+                <a class="nav-link btn" [routerLink]="['/contact']">Contacto</a>
+            </li>
+
+            <li class="nav-item mx-3" data-bs-toggle="offcanvas" data-bs-target="#login">
+                <a class="btn nav-link">Acceso área privada</a>
+            </li>
+        </ul>
+    </div>
+</nav>

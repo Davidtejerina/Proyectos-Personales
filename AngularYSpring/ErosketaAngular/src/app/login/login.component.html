@@ -1,0 +1,41 @@
+<div id="video-container">
+    <video autoplay loop muted>
+        <source src="../../assets/img/pexels-adrien-jacta-6430503.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div class="wrapper">
+    <div class="login-box">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div *ngIf="loginError !== ''" class="alert alert-danger text-danger mb-4">{{ loginError }}</div>
+
+            <h2>Inicio de Sesión</h2>
+            <div class="input-box">
+                <input formControlName="email" type="text" id="inputEmail" required>
+                <label for="inputEmail">Email</label>
+            </div>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger error">
+                <span class="error" *ngIf="email.errors?.['required']">Email requerido.</span>
+            </div>
+
+            <div class="input-box">
+                <input formControlName="password" type="password" id="inputPassword" required>
+                <label for="inputPassword">Password</label>
+            </div>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger error">
+                <span class="error" *ngIf="password.errors?.['required']">Password requerido.</span>
+            </div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Recuérdame</label>
+                <a href="#">Olvidó la contraseña?</a>
+            </div>
+
+            <button type="submit">Iniciar Sesión</button>
+
+            <div class="register-link">
+                <p>No tienes una cuenta? <a [routerLink]="['/register']">Registrarse</a></p>
+            </div>
+        </form>
+    </div>
+</div>

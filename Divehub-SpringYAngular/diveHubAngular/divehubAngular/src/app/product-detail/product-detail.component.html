@@ -1,0 +1,121 @@
+<div *ngIf="isLogged()"><app-menu-navbar-loggeado /></div>
+<div *ngIf="!isLogged()"><app-menu-navbar-sin-loggear /></div>
+
+<div class="container mt-5 p-5">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/shop']">diveHub shop</a></li>
+    <li class="breadcrumb-item active">{{ product.name }}</li>
+  </ol>
+
+  <div class="articles mt-5 p-5 row align-items-start">
+    <div class="col-md-4">
+      <img [src]="product.image" class="card-img">
+    </div>
+
+    <div class="col-md-8">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+
+      <div>
+        <span class="pb-1">({{media}}/5) </span>
+        <div class="rating-stars mt-3" *ngFor="let star of [1,2,3,4,5]">
+          <span class="star" [ngClass]="{'filled': star <= getMedia()}">&#9733;</span>
+        </div>
+        <span class="rating-count"><a class="valor" (click)="scrollToDiv()">({{totalAssessmts}} valoraciones)</a></span>
+      </div>
+
+      <p class="mt-5 price">{{ (product.starting_price).toString().split(".")[0] }}<span class="decimal">{{
+          (product.starting_price).toString().split(".")[1] }}</span>&nbsp;&nbsp;&nbsp;€</p>
+      <p class="text-success">Precio: <del>{{ product.final_price }} €</del></p>
+
+      <div *ngIf="!isItem" class="product-info">
+        <p>Nivel requerido: {{ activity.level_required }}</p>
+        <div class="mt-5 square text-center">
+          <div class="d-flex justify-content-center">
+            <p>Huecos disponibles: {{ activity.available_spaces }}</p>
+            <div *ngIf="isAdmin">
+              <a (click)="updateAvailabledSpaces(activity.id)"><i class="fa-solid fa-plus btn btn-primary mx-3"></i></a>
+            </div>
+          </div>
+          <div class="options d-flex justify-content-between">
+            <button class="btn btn-warning m-4" *ngIf="!isLogged()" data-bs-toggle="offcanvas" data-bs-target="#login"
+              [disabled]="activity.available_spaces<=0">Añadir actividad a la cesta</button>
+            <button class="btn btn-warning m-4" *ngIf="isLogged()" (click)="addToCart(activity)"
+              [disabled]="activity.available_spaces<=0||!isActivityAvailable||!isActivityAvailableByLvl">Añadir actividad a la cesta</button>
+          </div>
+          <div *ngIf="!isActivityAvailable">
+            <p>Ya ha comprado este producto, por favor revise el apartado de <a [routerLink]="['/profile']">Ver Perfil</a> para ver los detalles</p>
+          </div>
+          <div *ngIf="!isActivityAvailableByLvl" style="color: red;">
+            <p>Ud. es {{user.level}}. Aún no tiene el nivel requerido para este producto</p>
+          </div>
+
+          <div *ngIf="isAdmin" class="d-flex justify-content-center align-items-end row">
+            <div class="form-group col-md-6">
+                <label>Fecha de inicio:</label>
+                <input type="date" class="form-control" [value]="formatDate(activity.time_starts)" (change)="onDateChange1($event.target, activity)">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Fecha de fin:</label>
+                <input type="date" class="form-control" [value]="formatDate(activity.time_ends)" (change)="onDateChange2($event.target, activity)">
+            </div>
+          </div>
+        
+        </div>
+      </div>
+
+      <div *ngIf="isItem" class="product-info mt-5 square">
+        <p [class]="{'text-success': item.stock > 0, 'text-danger': item.stock <= 0 }">{{ item.stock > 0 ? 'En stock' :
+          'Sin stock' }}</p>
+        <div class="options d-flex justify-content-between">
+          <button class="btn btn-warning m-4" *ngIf="!isLogged()" data-bs-toggle="offcanvas" data-bs-target="#login"
+            [disabled]="item.stock<=0">Añadir artículo a la cesta</button>
+          <button class="btn btn-warning m-4" *ngIf="isLogged()" (click)="addToCart(item)"
+            [disabled]="item.stock<=0">Añadir artículo a la cesta</button>
+          <select *ngIf="item.stock>0" (change)="setQuantity($event.target)" class="form-select m-4">
+            <option *ngFor="let i of [1,2,3,4,5]" [value]="i">{{i}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="mb-5" #valoracionesDiv id="valoraciones">
+
+    </div>
+    <div class="container mt-5">
+      <div *ngIf="totalAssessmts==0">
+        <h3>No hay valoraciones para este producto</h3>
+      </div>
+      <div *ngIf="totalAssessmts>0">
+        <h3>Valoraciones del producto<span class="rating-count">({{totalAssessmts}} valoraciones)</span></h3>
+
+        <div class="ratings card mt-4 p-5 gap-3">
+          <select class="form-select ms-auto mb-5" (change)="switchMode($event.target)">
+            <option value="new">Más recientes</option>
+            <option value="old">Más antiguas</option>
+            <option value="best">Mejor valoraciones</option>
+            <option value="worst">Peor valoraciones</option>
+          </select>
+          <div *ngFor="let assessment of assessments">
+            <div class="d-flex justify-content-between">
+              <span>Por {{assessment.user.nickname}}:</span>
+              <span class="date">Publicado el {{parseDate(assessment.date)}}</span>
+            </div>
+            <div class="rating-stars mt-3" *ngFor="let star of [1,2,3,4,5]">
+              <span class="star me-2" [ngClass]="{'filled': star <= assessment.stars}">&#9733;</span>
+            </div>
+
+            <span class="rating-value rate">({{assessment.stars}}/5)</span><br>
+            <span><i>{{assessment.content}}</i></span>
+            <hr class="mt-5">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="contact-now">
+  <a [routerLink]="['/contact']" class="btn btn-info btn-contact-now">Contacta con nosotros</a>
+</div>
+
+<app-footer />

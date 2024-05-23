@@ -1,0 +1,23 @@
+<app-menu-nav-bar />
+<section class="profile-section p-5">
+    <h1 class="text-primary pb-4 mb-4">{{ user.firstname }} {{ user.lastname }}</h1>
+    <div class="profile-info">
+        <img src="../../assets/img/profile_picture.png">
+        <div class="user-details">
+            <p>{{ user.biography }}</p><br>
+            <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+                <p><i class="fas fa-envelope"></i>{{user.email}}</p>
+                <p>
+                    <i class="fas fa-house"></i>
+                    <input size="4" formControlName="postal_code" [value]="user.postal_code">
+                    <input size="20" formControlName="city" [value]="user.city">
+                    <input size="20" formControlName="country" [value]="user.country">
+                </p>
+                <p><i class="fas fa-phone"></i><input size="10" formControlName="phone" [value]="user.phone"></p>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success" type="submit">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

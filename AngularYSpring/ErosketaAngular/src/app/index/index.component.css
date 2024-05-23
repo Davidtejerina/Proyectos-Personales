@@ -1,0 +1,29 @@
+div{
+    margin-top: 150px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.arrow-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    animation: moveArrows 1s infinite alternate;
+  }
+  
+  @keyframes moveArrows {
+    from {
+      transform: translateY(0) rotate(0.5deg);
+    }
+    to {
+      transform: translateY(-10px) rotate(0deg);
+    }
+  }
+
+  .rotate-minus-45 {
+    transform: rotate(-15deg);
+  }
+  

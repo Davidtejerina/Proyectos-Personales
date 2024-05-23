@@ -1,0 +1,143 @@
+Tener Node.js instalado y activo
+
+CREAR PROYECTO ANGULAR:    ng new nombreProyecto
+			   cd nombreProyecto
+			   ng serve
+
+
+
+CREAR COMPONENTE:	   ng g c nombreComponente		(g -> generate)
+CREAR SERVICIO:	  	   ng g s nombreServicio
+CREAR CLASE:	   	   ng g class nombreComponente
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+*****  Para poder crear clases es necesario ir al archivo tsconfig.json y en el apartado de "compilerOptions" añadir el atributo "strictPropertyInitialization": false  *****
+
+
+
+
+
+
+Al ser una version mas moderna de angular, no necesitamos el archivo app.module.ts en el que se declaraban los modulos ya que vienen predeterminados como Standalone, es decir que no necesitan ser declaradas explicitamente.
+
+Para conseguir la comunicacion entre Angular y Springboot es necesario dos cosas:
+
+1) importar la notación @CrossOrigin en todos los controladores que usemos.
+
+
+2) importar HttpClientModule en el archivo app.config.ts:
+
+=============================================================================
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+
+import { importProvidersFrom } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [provideRouter(routes), importProvidersFrom(HttpClientModule)]
+};
+=============================================================================
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+Como queremos interactuar con SpringBoot para sacar las categorias, es necesario crear la clase Category:
+===========================
+export class Category {
+    id:number;
+    name:string;
+    color:string;
+    deleted:boolean;
+}
+===========================
+
+
+Esta clase la usaremos en el servicio de Category que por defecto se creará como @Injectable y le decimos que tiene que extraer esas categorias de la base de datos que es el link del controller:
+
+private baseURL = "http://localhost:8080/api/categories";	En mi caso
+
+
+Para poder usar este servicio de Category, tendremos que inyectarlo en el componente.ts que lo vaya a usar ya que el componente.html es el que lo muestra por pantalla. Se inyecta en el constructor, como el Autowired de Spring Boot, y hacemos un metodo que los reciba del service.
+
+
+En cuanto al componente.html que mostrará las categorias, una parte del html seria asi:
+==========================================
+<tr *ngFor="let category of categories">
+    <td>{{category.id}}</td>
+    <td>{{category.name}}</td>
+    <td>{{category.color}}</td>
+    <td>{{category.deleted}}</td>
+</tr>
+==========================================
+
+Donde para poder mostrar los datos necesitamos usar "  *ng___  "  en este caso *ngFor. Pero esta nomenclatura no se puede usar sin inportar en su componente.ts la libreria "CommonModule".
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+PARA CONFIGURAR LAS RUTAS CUANDO ENTREMOS EN UN NAVEGADOR:
+
+Nos meteremos al archivo app.routes.ts y añadiremos los paths necesarios dentro del array de routes. QUEDA ASI:
+============================================================================================
+import { Routes } from '@angular/router';
+import { ListCategoriesComponent } from './list-categories/list-categories.component';
+
+export const routes: Routes = [
+    {path : 'all-categories', component:ListCategoriesComponent},
+    {path : '', redirectTo:'all-categories', pathMatch:'full'}
+];
+============================================================================================
+
+
+En Internet se verá el enlace "http://localhost:4200/all-categories" que nos mostrará la web con el componente de la lista de categorias.
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+COSAS VARIAS:
+
+
+
+- Enlaces: para que un enlace (a) o boton (button) te lleve a un enlace especifico hay que importar RouterLink en el .ts correspondiente.
+           Un ejemplo es <a [routerLink]="['/save-category']" class="nav-link btn">Añadir Categoria</a>	
+	
+- Form:    para poder usar los eventos de un form, importaremos FormsModule en el .ts correspondiente.
+
+
+- Alertas / Errores:    Nos descargaremos mediante consola "npm install sweetalert2" que nos permitirá mostrar errores de usuario de una forma personalizada.
+

@@ -1,0 +1,92 @@
+<div *ngIf="isLogged()"><app-menu-navbar-loggeado /></div>
+<div *ngIf="!isLogged()"><app-menu-navbar-sin-loggear /></div>
+
+
+<div class="container mb-5">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+        <li class="breadcrumb-item active">Galería de imágenes</li>
+    </ol>
+
+    <h1 class="mb-5">Galería de imágenes</h1>
+    <div class="container-photo">
+        <div class="photo">
+            <img src="../../assets/img/buceo1.jpg">
+            <p><i>Buceo submarino con la naturaleza</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/buceo2.jpg">
+            <p><i>Buceo submarino con la naturaleza</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/buceo3.jpg">
+            <p><i>Buceo submarino con calamares</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/buceo4.jpg">
+            <p><i>Buceo submarino con mantarrayas</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/buceo5.jpg">
+            <p><i>Buceo submarino con tiburón</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/buceo6.jpg">
+            <p><i>Buceo submarino en la barrera de coral</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/buceo7.jpg">
+            <p><i>Expedición submarina en barco hundido</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/buceo8.jpg">
+            <p><i>Expedición submarina en avión hundido</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/buceo9.jpg">
+            <p><i>Buceo submarino con tiburones</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_avion1.jpg">
+            <p><i>Expedición submarina en avión hundido</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_avion2.jpg">
+            <p><i>Expedición submarina en avión hundido</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_avion3.jpg">
+            <p><i>Expedición submarina en avión hundido</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_barco2.jpg">
+            <p><i>Expedición submarina en barco hundido</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_barco3.jpg">
+            <p><i>Expedición submarina en barco hundido</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_coral2.jpeg">
+            <p><i>Expedición submarina en arrecifes de coral</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_coral3.jpeg">
+            <p><i>Expedición submarina en arrecifes de coral</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_tiburon2.jpg">
+            <p><i>Buceo submarino con tiburones</i></p>
+        </div>
+        <div class="photo">
+            <img src="../../assets/img/expedicion_tiburon3.jpg">
+            <p><i>Buceo submarino con tiburones</i></p>
+        </div>
+    </div>
+</div>
+
+<div class="contact-now">
+    <a [routerLink]="['/contact']" class="btn btn-info btn-contact-now">Contacta con nosotros</a>
+</div>
+
+<app-footer />

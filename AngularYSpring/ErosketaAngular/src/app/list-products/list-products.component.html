@@ -1,0 +1,48 @@
+<app-menu-nav-bar />
+<div class="container">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/all-categories']">Tienda</a></li>
+        <li class="breadcrumb-item active">{{ category.name }}</li>
+    </ol>
+</div>
+<div class="container mt-5 p-4">
+    <h2 class="text-center">{{ category.name }}</h2>
+    <div class="d-flex justify-content-end mb-3">
+        <label>Ordenar por:</label>
+        <select [(ngModel)]="selectedSortOption" (change)="sortProducts()">
+            <option selected disabled value="default">Seleccione una opción</option>
+            <option value="asc">Precio ascendente</option>
+            <option value="desc">Precio descendente</option>
+        </select>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div *ngFor="let product of products" class="col-md-3 mb-4">
+                <div class="card h-100" id="container" [ngStyle]="{ 'border': '2px solid ' + product.category.color }">
+                    <img class="card-img-top m-auto" style="width: 100%; height: 200px; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.200);"
+                        [src]="product.image">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title ">{{ product.name }}</h5>
+                        <p class="card-text mb-auto">{{ product.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="card-text mt-4"><strong>{{ product.price }}€</strong></p>
+                                <p class="card-text"
+                                    [ngClass]="{'text-success': hasStock(product.id), 'text-danger': !hasStock(product.id)}">
+                                    {{ hasStock(product.id) ? 'En stock' : 'Sin stock' }}
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button (click)="details(product.id)" class="btn btn-success">Ver producto</button>
+                                <img (click)="toggleLike(product)"
+                                    [src]="product.isLiked ? '../../assets/img/like2.png' : '../../assets/img/like.png'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button *ngIf="isAdmin()" (click)="generateRandomProducts()" class="btn btn-success boton">Generar 5 productos
+        aleatorios</button>
+</div>
